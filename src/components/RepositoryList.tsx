@@ -6,11 +6,11 @@ import '../styles/repositories.scss';
 
 //https://api.github.com/users/srosajazz/repos
 
-const repository = {
-  name: 'Sergio',
-  description: 'Github repository',
-  link:'https://github.com/srosajazz/'
-}
+// const repository = {
+//   name: 'Sergio',
+//   description: 'Github repository',
+//   link:'https://github.com/srosajazz/'
+// }
 
 export function RepositoryList(){
   const[repository, setRepository] = useState([]);
@@ -25,11 +25,11 @@ export function RepositoryList(){
   return(
     <section className="repository-list">
       <h1>Repository List</h1>
+
       <ul>
-        <RepositoryItem repository ={repository} />
-        <RepositoryItem repository ={repository} />
-        <RepositoryItem repository ={repository} />
-        <RepositoryItem repository ={repository} />
+        {repository.map(repository => {
+          return <RepositoryItem key={repository.name} repository={repository} />;  
+        })}
       </ul>
     </section>
   );
