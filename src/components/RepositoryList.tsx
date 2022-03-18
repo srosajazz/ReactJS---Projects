@@ -1,36 +1,33 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { RepositoryItem } from "./RepositoryItem";
 
-import '../styles/repositories.scss';
+import '../styles/repositories.scss'
+import { useEffect, useState } from "react";
 
-//https://api.github.com/users/srosajazz/repos
+interface Repository {
+  name: string;
+  full_name: string;
+  html_url: string;
+}
 
-// const repository = {
-//   name: 'Sergio',
-//   description: 'Github repository',
-//   link:'https://github.com/srosajazz/'
-// }
+export function RepositoryList() {
+  const [repositories, setRepositories] = useState<Repository[]>([]);
 
-export function RepositoryList(){
-  const[repository, setRepository] = useState([]);
-
-  useEffect(() =>{
+  useEffect(() => {
     fetch('https://api.github.com/users/srosajazz/repos')
-    .then(response => response.json())
-    .then(data => setRepository(data));
-  },[]);
+      .then(response => response.json())
+      .then(data => setRepositories(data))
+  },[])
 
-
-  return(
+  return (
     <section className="repository-list">
-      <h1>Repository List</h1>
-
+      <h1>Lista de Repositórios</h1>
       <ul>
-        {repository.map(repository => {
-          return <RepositoryItem key={repository.name} repository={repository} />;  
-        })}
+        {repositories.map(repository => (
+        <RepositoryItem key={repository.name} repository={repository} />
+        ))}
       </ul>
     </section>
-  );
+  )
 }
+
+

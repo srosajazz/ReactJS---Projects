@@ -17,9 +17,14 @@ section.repository-list {
         font-size: 14px;
         color: #444;
         margin-top: 8px;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 16px;
         text-decoration: none;
+        color: #6257e6;
       }
     }
-    color: #6643b5;
   }
 }
